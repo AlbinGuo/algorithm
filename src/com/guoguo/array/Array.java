@@ -110,8 +110,8 @@ public class Array<E> {
         }
         this.size--;
         this.data[size] = null; // loitering objects
-        // 数组缩容
-        if(this.size == this.data.length / 2){
+        // 数组缩容 [ 除以4表示size达到length的1/4时进行缩容，lazy模式 ]
+        if(this.size == this.data.length / 4 && this.data.length / 2 != 0){
             this.resize(this.data.length / 2);
         }
         return result;
