@@ -63,7 +63,9 @@ public class Array<E> {
     // 在索引位置插入一个新元素
     public void add(int index, E el){
           if(this.size == this.data.length){
-              throw new IllegalArgumentException("Add failed, Array is full.");
+              // throw new IllegalArgumentException("Add failed, Array is full.");
+              // 数组扩容
+              this.resize(2 * this.data.length);
           }
 
           if(index < 0 || index > size) {
@@ -108,6 +110,10 @@ public class Array<E> {
         }
         this.size--;
         this.data[size] = null; // loitering objects
+        // 数组缩容
+        if(this.size == this.data.length / 2){
+            this.resize(this.data.length / 2);
+        }
         return result;
     }
 
@@ -127,6 +133,15 @@ public class Array<E> {
         if(index != -1){
             this.remove(index);
         }
+    }
+
+    // 数组扩容
+    private void resize(int newCapacity) {
+        E[] newData = (E[])new Object[newCapacity];
+        for (int i = 0; i < this.size; i++) {
+            newData[i] = data[i];
+        }
+        data = newData;
     }
 
     @Override
@@ -152,7 +167,7 @@ public class Array<E> {
 //        System.out.println(ar.remove(3));
 //        System.out.println(ar);
 
-        Array<Student> studentArray = new Array<>(5);
+        Array<Student> studentArray = new Array<>(2);
         Student stu1 = new Student(10, "子龙", 56);
         Student stu2 = new Student(10, "关羽", 49);
         Student stu3 = new Student(10, "刘备", 46);
@@ -161,7 +176,11 @@ public class Array<E> {
         studentArray.addLast(stu2);
         studentArray.addLast(stu3);
         studentArray.addFirst(stu5);
-        studentArray.removeEl(stu5);
+        studentArray.addFirst(stu5);
+        studentArray.addFirst(stu5);
+        studentArray.addFirst(stu5);
+        studentArray.addFirst(stu5);
+        studentArray.addFirst(stu5);
         System.out.println(studentArray);
     }
 
