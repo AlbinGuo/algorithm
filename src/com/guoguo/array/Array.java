@@ -135,6 +135,16 @@ public class Array<E> {
         }
     }
 
+    // 获取数组中最后一个元素
+    public E getLastEl(){
+        return this.getEl(this.size - 1);
+    }
+
+    // 获取数组中第一个元素
+    public E getFirstEl(){
+        return this.getEl(0);
+    }
+
     // 数组扩容
     private void resize(int newCapacity) {
         E[] newData = (E[])new Object[newCapacity];
