@@ -111,7 +111,7 @@ public class Array<E> {
         this.size--;
         this.data[size] = null; // loitering objects [GC自动回收]
         // 数组缩容 [ 除以4表示size达到length的1/4时进行缩容，lazy模式 ]
-        if(this.size == this.data.length / 4 && this.data.length / 2 != 0){
+        if(this.size <= this.data.length / 4 && this.data.length / 2 != 0){
             this.resize(this.data.length / 2);
         }
         return result;
@@ -177,7 +177,7 @@ public class Array<E> {
 //        System.out.println(ar.remove(3));
 //        System.out.println(ar);
 
-        Array<Student> studentArray = new Array<>(2);
+        Array<Student> studentArray = new Array<>(20);
         Student stu1 = new Student(10, "子龙", 56);
         Student stu2 = new Student(10, "关羽", 49);
         Student stu3 = new Student(10, "刘备", 46);
@@ -186,11 +186,7 @@ public class Array<E> {
         studentArray.addLast(stu2);
         studentArray.addLast(stu3);
         studentArray.addFirst(stu5);
-        studentArray.addFirst(stu5);
-        studentArray.addFirst(stu5);
-        studentArray.addFirst(stu5);
-        studentArray.addFirst(stu5);
-        studentArray.addFirst(stu5);
+        studentArray.remove(0);
         System.out.println(studentArray);
     }
 
