@@ -3,10 +3,10 @@ package com.guoguo.leetcode;
 import java.util.Stack;
 
 /**
+ * 【括号有效性】 ： Leetcode - #20
  * @Desc Parentheses Valid
  * @Result. {[()]} -> true
  * @Author guoguo
- *
  * 时间复杂度：O(n)
  * 空间复杂度：O(n)
  */
