@@ -118,8 +118,8 @@ public class Array<E> {
     }
 
     // 从数组中删除第一个元素，返回删除的元素
-    public void removeFirst(){
-        this.remove(0);
+    public E removeFirst(){
+       return this.remove(0);
     }
 
     // 从数组中删除最后一个元素， 返回删除的元素
