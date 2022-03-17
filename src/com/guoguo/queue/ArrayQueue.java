@@ -19,8 +19,9 @@ public class ArrayQueue<E> implements Queue<E>{
     }
 
     @Override
-    public void enqueue(E el) {
+    public boolean enqueue(E el) {
         this.array.addLast(el);
+        return true;
     }
 
     @Override
@@ -41,6 +42,11 @@ public class ArrayQueue<E> implements Queue<E>{
     @Override
     public E getFront() {
         return this.array.getFirstEl();
+    }
+
+    @Override
+    public E getTail() {
+        return this.array.getLastEl();
     }
 
     @Override
@@ -67,8 +73,10 @@ public class ArrayQueue<E> implements Queue<E>{
             System.out.println(queue);
             if(i % 3 == 2){
                 System.out.println(queue.dequeue());
-                System.out.println("=="+queue);
             }
         }
+        System.out.println("=="+queue);
+        System.out.println(queue.getFront());
+        System.out.println(queue.getTail());
     }
 }

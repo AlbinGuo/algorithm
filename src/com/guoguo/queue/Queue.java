@@ -5,7 +5,7 @@ public interface Queue<E> {
      * @param el
      * @return
      */
-    void enqueue(E el);
+    boolean enqueue(E el);
 
     /** 出队
      * @return
@@ -26,5 +26,10 @@ public interface Queue<E> {
      * @return
      */
     E getFront();
+
+    /** 查看队尾元素
+     * @return
+     */
+    E getTail();
 
 }
