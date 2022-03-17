@@ -13,6 +13,7 @@ import java.util.Stack;
 public class ParenthesesValid {
 
     public static boolean isValid(String s){
+        // Stack替换为ArrayStack也可以达到效果
         Stack<Character> stack = new Stack<>();
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
