@@ -106,23 +106,34 @@ class LoopQueue<E> implements Queue<E>{
     }
 
     public static void main(String[] args) {
-        LoopQueue<String> q = new LoopQueue<>(5);
-        for (int i = 0; i < q.capacity; i++) {
-            q.enqueue(i+1+"");
+        LoopQueue<Integer> queue = new LoopQueue<>();
+        for(int i = 0 ; i < 10 ; i ++){
+            queue.enqueue(i);
+            System.out.println(queue);
+
+            if(i % 3 == 2){
+                queue.dequeue();
+                System.out.println(queue);
+            }
         }
-        q.enqueue(7+"");
-        q.enqueue(8+"a");
-        q.enqueue(9+"a");
-        q.enqueue(10+"a");
-        q.enqueue(11+"a");
-        q.dequeue();
-        q.dequeue();
-        q.dequeue();
-        q.dequeue();
-        q.dequeue();
-        q.dequeue();
-        System.out.println(q);
-        System.out.println(q.getFront());
-        System.out.println(q.getTail());
+        System.out.println(queue);
+//        LoopQueue<String> q = new LoopQueue<>(5);
+//        for (int i = 0; i < q.capacity; i++) {
+//            q.enqueue(i+1+"");
+//        }
+//        q.enqueue(7+"");
+//        q.enqueue(8+"a");
+//        q.enqueue(9+"a");
+//        q.enqueue(10+"a");
+//        q.enqueue(11+"a");
+//        q.dequeue();
+//        q.dequeue();
+//        q.dequeue();
+//        q.dequeue();
+//        q.dequeue();
+//        q.dequeue();
+//        System.out.println(q);
+//        System.out.println(q.getFront());
+//        System.out.println(q.getTail());
     }
 }
