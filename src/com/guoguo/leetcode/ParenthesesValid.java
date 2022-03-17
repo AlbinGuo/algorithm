@@ -3,7 +3,7 @@ package com.guoguo.leetcode;
 import java.util.Stack;
 
 /**
- * 【括号有效性】 ： Leetcode - #20
+ * 【括号有效性】 ： Leetcode-cn.com - #20
  * @Desc Parentheses Valid
  * @Result. {[()]} -> true
  * @Author guoguo
