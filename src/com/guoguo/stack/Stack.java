@@ -5,7 +5,7 @@ public interface Stack<E> {
     void push(E item);
 
     // 出栈
-    void pop();
+    E pop();
 
     // 查看栈顶元素
     E peek();

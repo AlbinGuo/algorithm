@@ -123,8 +123,8 @@ public class Array<E> {
     }
 
     // 从数组中删除最后一个元素， 返回删除的元素
-    public void removeLast(){
-        this.remove(this.size - 1);
+    public E removeLast(){
+       return this.remove(this.size - 1);
     }
 
     // 从数组中删除元素

@@ -20,8 +20,8 @@ public class ArrayStack<E> implements Stack<E> {
     }
 
     @Override
-    public void pop() {
-        this.array.removeLast();
+    public E pop() {
+        return this.array.removeLast();
     }
 
     @Override
