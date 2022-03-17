@@ -27,7 +27,9 @@ class LoopQueue<E> implements Queue<E>{
     @Override
     public boolean enqueue(E el) {
         if(this.size == this.capacity){
-            throw new IllegalArgumentException("Enqueue fail. queue is full.");
+//            throw new IllegalArgumentException("Enqueue fail. queue is full.");
+            // 队列元素数量达到总容量一半时进行扩容
+            resize(2 * this.capacity);
         }
         this.queue[(this.headIndex + this.size) % this.capacity] = el;
         this.size += 1;
@@ -39,14 +41,32 @@ class LoopQueue<E> implements Queue<E>{
         if(this.size == 0){
             throw new IllegalArgumentException("Cannot dequeue from an empty queue.");
         }
-        int currHeadIndex = this.headIndex;
-        // 队首索引向后移动一位
-        this.headIndex = (currHeadIndex + 1) % this.capacity;
+        E ret = this.queue[this.headIndex];
         // 出队后元素置空
-        this.queue[currHeadIndex] = null;
+        this.queue[this.headIndex] = null;
+        // 队首索引向后移动一位
+        this.headIndex = (this.headIndex + 1) % this.capacity;
         // 出队后队列元素数量减一
         this.size -= 1;
-        return this.queue[currHeadIndex];
+        // 队列缩容 [队列长度减少到总长度1/4时进行缩容]
+        if(this.size <= this.capacity / 4 && this.capacity / 2 != 0){
+            this.resize(this.capacity / 2);
+        }
+        return ret;
+    }
+
+    /**
+     * 队列扩/缩容
+     * @param newCapacity
+     */
+    private void resize(int newCapacity) {
+        E[] newQueue = (E[])new Object[newCapacity];
+        for (int i = 0; i < this.size; i++) {
+            newQueue[i] = this.queue[(this.headIndex + i) % this.capacity];
+        }
+        this.capacity = newCapacity;
+        this.headIndex = 0;
+        this.queue = newQueue;
     }
 
     @Override
@@ -90,13 +110,17 @@ class LoopQueue<E> implements Queue<E>{
         for (int i = 0; i < q.capacity; i++) {
             q.enqueue(i+1+"");
         }
-        q.dequeue();
-        q.dequeue();
-        q.dequeue();
-        q.dequeue();
-        q.enqueue(6+"");
         q.enqueue(7+"");
         q.enqueue(8+"a");
+        q.enqueue(9+"a");
+        q.enqueue(10+"a");
+        q.enqueue(11+"a");
+        q.dequeue();
+        q.dequeue();
+        q.dequeue();
+        q.dequeue();
+        q.dequeue();
+        q.dequeue();
         System.out.println(q);
         System.out.println(q.getFront());
         System.out.println(q.getTail());
