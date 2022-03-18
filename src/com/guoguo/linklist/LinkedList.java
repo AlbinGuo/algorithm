@@ -56,10 +56,11 @@ public class LinkedList<E> {
 
     // 向链表中添加元素, index从0开始
     public void add(int index, E e){
-        if(index < 0 || index > this.size){
+        if(index <= 0 || index > this.size){
             throw new IllegalArgumentException("Add failed, Illegal index.");
         }
         // 获取要插入索引位置前一项的Node信息
+        // 头节点是从索引为0的Node开始遍历的
         Node prev = head;
         for (int i = 0; i < index - 1; i++) {
             prev = prev.next;
@@ -74,6 +75,22 @@ public class LinkedList<E> {
     // 链表尾部添加元素
     public void addLast(E e){
         this.add(this.size, e);
+    }
+
+    @Override
+    public String toString() {
+        return "LinkedList{" +
+                "head=" + head +
+                ", size=" + size +
+                '}';
+    }
+
+    public static void main(String[] args) {
+        LinkedList linkedList = new LinkedList<Integer>();
+        linkedList.addFirst(1);
+        linkedList.add(1, 2);
+        linkedList.addLast(3);
+        System.out.println(linkedList);
     }
 
 
