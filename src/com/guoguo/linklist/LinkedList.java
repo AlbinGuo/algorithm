@@ -48,12 +48,6 @@ public class LinkedList<E> {
         return this.size == 0;
     }
 
-    // 链表头部添加新元素
-    public void addFirst(E e){
-        head = new Node(e, null);
-        this.size += 1;
-    }
-
     // 向链表中添加元素, index从0开始
     public void add(int index, E e){
         if(index <= 0 || index > this.size){
@@ -69,6 +63,12 @@ public class LinkedList<E> {
 //        node.next = prev.next;
 //        prev.next = node;
         prev.next = new Node(e, prev.next);
+        this.size += 1;
+    }
+
+    // 链表头部添加新元素
+    public void addFirst(E e){
+        head = new Node(e, null);
         this.size += 1;
     }
 
