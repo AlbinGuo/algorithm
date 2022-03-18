@@ -67,11 +67,43 @@ public class DummyHeadLinkedList<E> {
         add(size, e);
     }
 
+    // 获取链表中索引为index的元素
+    public E get(int index){
+        if(index < 0 || index > this.size){
+            throw new IllegalArgumentException("Get failed; Illegal index.");
+        }
+        Node prev = dummyHead.next;
+        for (int i = 0; i < index; i++) {
+            prev = prev.next;
+        }
+        return prev.e;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+//        Node cur = dummyHead.next;
+//        while(cur != null){
+//            res.append(cur + "->");
+//            cur = cur.next;
+//        }
+
+        for (Node curr = dummyHead.next; curr != null; curr = curr.next) {
+            sb.append(curr + "-->");
+        }
+        sb.append("NULL");
+        return sb.toString();
+    }
+
     public static void main(String[] args) {
-        LinkedList linkedList = new LinkedList<Integer>();
-        linkedList.addFirst(1);
-//        linkedList.add(1, 2);
-//        linkedList.addLast(3);
-        System.out.println(linkedList);
+        DummyHeadLinkedList<Integer> dummyHeadLinkedList = new DummyHeadLinkedList<>();
+        dummyHeadLinkedList.addFirst(1);
+        dummyHeadLinkedList.add(1, 2);
+        dummyHeadLinkedList.addLast(3);
+        dummyHeadLinkedList.addLast(4);
+        dummyHeadLinkedList.addLast(5);
+        System.out.println(dummyHeadLinkedList);
+        System.out.println(dummyHeadLinkedList.get(2));
     }
 }
