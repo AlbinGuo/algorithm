@@ -79,6 +79,46 @@ public class DummyHeadLinkedList<E> {
         return prev.e;
     }
 
+    // 获取链表的第一个元素
+    public E getFirst(){
+        return this.get(0);
+    }
+
+    // 获取链表的最后一个元素
+    public E getLast(){
+        return this.get(this.size - 1);
+    }
+
+    // 修改链表中索引为index位置的元素为e
+    public void set(int index, E e){
+        if(index < 0 || index >= size){
+            throw new IllegalArgumentException("Set failed, Illegal index.");
+        }
+        // 找出要修改元素对应的Node
+        Node curr = this.dummyHead.next;
+        for (int i = 0; i < index; i++) {
+            curr = curr.next;
+        }
+        curr.e = e;
+    }
+
+    // 查询链表中是否存在某个元素
+    public boolean contains(E e){
+//        Node curr = this.dummyHead.next;
+//        while (curr != null){
+//            if(curr.e.equals(e)){
+//                return true;
+//            }
+//            curr = curr.next;
+//        }
+        for (Node curr = this.dummyHead.next; null != curr; curr = curr.next) {
+            if(curr.e.equals(e)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -105,5 +145,12 @@ public class DummyHeadLinkedList<E> {
         dummyHeadLinkedList.addLast(5);
         System.out.println(dummyHeadLinkedList);
         System.out.println(dummyHeadLinkedList.get(2));
+        System.out.println("=====================");
+        System.out.println(dummyHeadLinkedList.getFirst());
+        System.out.println(dummyHeadLinkedList.getLast());
+        dummyHeadLinkedList.set(4, 222);
+        System.out.println(dummyHeadLinkedList);
+        System.out.println("=====================");
+        System.out.println(dummyHeadLinkedList.contains(222));
     }
 }
