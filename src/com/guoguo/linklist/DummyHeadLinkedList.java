@@ -119,6 +119,51 @@ public class DummyHeadLinkedList<E> {
         return false;
     }
 
+    // 从链表的指定index位置删除元素
+    public E remove(int index){
+        if(index < 0 || index >= size){
+            throw new IllegalArgumentException("Remove failed, Illegal index");
+        }
+        // 查找要删除的元素的前一个元素
+        Node prev = this.dummyHead;
+        for (int i = 0; i < index; i++) {
+            prev = prev.next;
+        }
+        // 要删除的元素
+        Node retNode = prev.next;
+        prev.next = retNode.next;
+        retNode.next = null;
+        this.size -= 1;
+        return retNode.e;
+    }
+
+    // 删除链表中第一个元素
+    public E removeFirst(){
+        return this.remove(0);
+    }
+
+    // 删除链表中最后一个元素
+    public E removeLast(){
+        return this.remove(this.size - 1);
+    }
+
+    // 删除链表中的节点
+    public E removeByElement(E e){
+        Node prev = null;
+        for(prev = this.dummyHead; prev.next!=null; prev = prev.next){
+            if(prev.next.e.equals(e)){
+                break;
+            }
+        }
+        Node delNode = null;
+        if(prev.next != null){
+             delNode = prev.next;
+            prev.next = delNode.next;
+            delNode.next = null;
+        }
+        return delNode.e;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
