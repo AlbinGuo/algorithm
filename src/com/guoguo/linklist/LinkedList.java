@@ -1,5 +1,10 @@
 package com.guoguo.linklist;
 
+/**
+ * @Desc 链表
+ * add ： 通过设定index索引的方式添加节点
+ * @param <E>
+ */
 public class LinkedList<E> {
     private class Node {
         private E e;
