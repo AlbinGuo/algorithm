@@ -5,6 +5,24 @@ package com.guoguo.leetcode;
  * 请你删除链表中所有满足 Node.val == val 的节点，并返回 新的头节点 。
  */
 public class RemoveLinkedListElement203 {
+
+    /**
+     * 递归删除链表中元素
+     */
+    public ListNode removeElements2(ListNode head, int val) {
+        if (head == null)
+            return head;
+
+        ListNode res = removeElements2(head.next, val);
+        if (head.val == val)
+            return res;
+        else {
+            head.next = res;
+            return head;
+        }
+//        reyurn head.val == val? head.next : head;
+    }
+
     public ListNode removeElements(ListNode head, int val) {
         while (head != null && head.val == val){
             head = head.next;

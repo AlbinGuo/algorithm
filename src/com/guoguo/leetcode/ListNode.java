@@ -1,8 +1,8 @@
 package com.guoguo.leetcode;
 
 public class ListNode {
-    int val;
-    ListNode next;
+    public int val;
+    public ListNode next;
     ListNode() {
 
     }
@@ -14,7 +14,7 @@ public class ListNode {
         this.next = next;
     }
 
-    ListNode(int[] arr){
+    public ListNode(int[] arr){
         if(arr == null || arr.length == 0){
             throw new IllegalArgumentException("arr cannot null or empty.");
         }
